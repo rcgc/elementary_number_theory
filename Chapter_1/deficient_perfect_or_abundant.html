@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deficient, Perfect or Abundant</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">1.3 Deficient, Perfect or Abundant<br>. . .</h1>
+
+        <div class="container">
+            <h2>Definition</h2>
+            <span>
+                If the sum of the proper factors of <em>n</em> is less than <em>n</em>, we call <em>n</em> <b><em>deficient</em></b>.<br>
+                If the sum exceeds <em>n</em>, it is called <b><em>abundant</em></b>.<br>
+                If the sum equals <em>n</em>, we call it <b><em>perfect</em></b>.
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>/*</comment></syntax>
+                    <div class="indent">
+                        <syntax><comment>* Will print if the given number is</comment></syntax><br>
+                        <syntax><comment>* deficient,</comment></syntax><br>
+                        <syntax><comment>* abundant or</comment></syntax><br>
+                        <syntax><comment>* perfect</comment></syntax><br>
+                    </div>
+                <syntax><comment>*/</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE </reserved>DEFICIENT_PERFECT_OR_ABUNDANT<operator>(</operator> n <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>sum <operator>=</operator> <number>0</number></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> i <operator>=</operator> <number>1</number> <reserved>UNTIL</reserved> i <operator>&lt;</operator> n <reserverd>STEP</reserverd> <number>1</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>IF</reserved><operator>(</operator> n <operator>%</operator> i <operator>==</operator> 0 <operator>)</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>sum<operator> += </operator>i</syntax><br><br>
+                                    </div>
+                            </div>
+                        <syntax><reserved>IF</reserved><operator>(</operator> sum <operator>&lt;</operator> n <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>PRINT</reserved> <string>"deficient."</string></syntax>
+                            </div>
+                        <syntax><reserved>ELSE IF</reserved><operator>(</operator> sum <operator>==</operator> n <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>PRINT</reserved> <string>"perfect."</string></syntax>
+                            </div>
+                        <syntax><reserved>ELSE</reserved><operator>:</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>PRINT</reserved> <string>"abundant."</string></syntax>
+                            </div>
+                        <syntax><reserved>RETURN</reserved></syntax>
+                    </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    function addUpFactors(n){
+                        document.write("<h4>Proper factors of "+n+" are:<br>");
+                        var sum = 0;
+                        for(var i=1; i<n; i++){
+                            if(n%i==0){
+                                document.write(i+" ");
+                                sum+=i;
+                            }
+                        }
+
+                        document.write("<br>The sum of the proper factors of "+n+" is "+sum+", so "+n+" is ");
+                        if(sum<n){
+                        document.write("deficiend.") ;
+                        } else if(sum==n){
+                            document.write("perfect.");
+                        } else{
+                            document.write("abundant.");
+                        }
+                        document.write("</h4>");
+                    }
+                    addUpFactors(6);
+                    addUpFactors(8);
+                    addUpFactors(18);
+                    // addUpFactors(28);
+                    // addUpFactors(945);
+                    // addUpFactors(8128);
+                    document.write("<h5>* For more details check font code</h5>");
+                </script>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sort Odd numbers</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">1.4 Checking the Conjecture on No Perfect Odd Number<br>. . .</h1>
+
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                It was shown in the eighteenth century by the great Swiss mathematician Leonhard Euler (1707&minus;1783) that
+                all <em>even perfect numbers</em> are of the form 2<sup>n&minus;1</sup>(2<sup>n</sup>&minus;1).<br>
+                A conjecture is that no <b><em>odd number</em></b> (odd number >1) is <b><em>perfect</em></b>.
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will demonstrate there's no</comment></syntax><br>
+                <syntax><comment>// perfect odd numbers up to <em>limit</em></comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> CLASSIFY<operator>(</operator> n <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>sum <operator>=</operator> 0</syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> i <operator>=</operator> 1 <reserved>UNTIL</reserved> i <operator>&lt;</operator> n <reserved>STEP</reserved> <number>1</number><operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax>sum <operator>+=</operator> i</syntax>
+                            </div><br>
+
+                        <syntax><reserved>IF</reserved><operator>(</operator> sum <operator>&lt;</operator> n<operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> <number>-1</number></syntax>
+                            </div>
+                        <syntax><reserved>ELSE IF</reserved><operator>(</operator> sum <operator>==</operator> n<operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> <number>0</number></syntax>
+                            </div>
+                        <syntax><reserved>ELSE</reserved><operator>:</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> <number>1</number></syntax>
+                            </div>
+
+                        <syntax><reserved>RETURN</reserved></syntax>
+                    </div><br><br><br>
+                
+
+                <syntax><comment>// Will count how many odd numbers are </comment></syntax><br>
+                <syntax><comment>// deficient, abundant or perfect</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> SORT_ODDS<operator>(</operator> limit <operator>):</operator></syntax>
+                <div class="indent">
+                    <syntax>perfect <operator>=</operator> <number>0</number></syntax><br>
+                    <syntax>deficient <operator>=</operator> <number>0</number></syntax><br>
+                    <syntax>abundant <operator>=</operator> <number>0</number></syntax><br>
+                    <syntax><reserved>FOR</reserved><operator>(</operator> j <operator>=</operator> <number>1</number> <reserved>UNTIL</reserved> j <operator>&#8804;</operator> limit <reserved>STEP</reserved> <number>1</number><operator>):</operator></syntax>
+                        <div class="indent">
+                            <syntax>n <operator>=</operator> <number>2</number> <operator>*</operator> j <operator>+</operator> <number>1</number></syntax><br>
+                            <syntax>c <operator>=</operator> classify<operator>(</operator> n <operator>)</operator></syntax><br><br>
+                            <syntax><reserved>IF</reserved><operator>(</operator> c <operator>==</operator> <number>-1</number> <operator>):</operator></syntax>
+                                <div class="indent">
+                                    <syntax>deficient<operator>++</operator></syntax>
+                                </div>
+                            <syntax><reserved>ELSE IF</reserved><operator>(</operator> c <operator>==</operator> <number>1</number> <operator>):</operator></syntax>
+                                <div class="indent">
+                                    <syntax>abundant<operator>++</operator></syntax>
+                                </div>
+                            <syntax><reserved>ELSE</reserved><operator>:</operator></syntax>
+                                <div class="indent">
+                                    <syntax>perfect<operator>++</operator></syntax>
+                                </div>
+                        </div>
+                    <syntax><reserved>RETURN</reserved></syntax>
+                </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    function classify(n){
+                        var sum = 0;
+                        for(var i=1; i<n; i++){
+                            if(n%i == 0){
+                                //document.write(i+"<br>");
+                                sum += i;
+                            }
+                        }
+
+                        if(sum < n){
+                            return -1;
+                        } else if(sum == n){
+                            return 0;
+                        } else{
+                            return 1;
+                        }
+                        document.write("<br>");
+                    }
+
+                    function sortOdds(limit){
+                       var perfect = 0;
+                       var deficient = 0;
+                       var abundant = 0;
+                       for(var j=1; j <= limit; j++){
+                           var n = 2*j+1;
+                           c = classify(n);
+                           if( c == -1 ){
+                               deficient++;
+                           } else if( c == 1 ){
+                               abundant++;
+                           } else {
+                               perfect++;
+                           }
+                       }
+                       document.write("<h4>First "+limit+" odd numbers: </h4>");
+                       document.write("<h4><li>deficient: "+deficient+ "</li></h4>");
+                       document.write("<h4><li>abundant: "+abundant+ "</li></h4>");
+                       document.write("<h4><li>perfect: "+perfect+ "</li></h4>");
+                       document.write("<h5>* For more details check font code</h5>");
+                    }
+                    sortOdds(1000);
+                </script>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

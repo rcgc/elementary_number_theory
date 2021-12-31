@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proper factors</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">1.2 Proper Factors<br>. . .</h1>
+
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                <b><em>Proper factors</em></b> are all the numbers that
+                go into it (with the exclusion of the given number), 
+                i.e., its divisors.
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will return an array </comment></syntax><br>
+                <syntax><comment>// containing all the proper </comment></syntax><br>
+                <syntax><comment>// factors for a given integer number "n",</comment></syntax><br>
+                <syntax><comment>// and how many of them were found</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> PROPER_FACTORS<operator>(</operator> n <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>count <operator>=</operator> <number>0</number></syntax><br>
+                        <syntax>j <operator>=</operator> <number>0</number></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> i <operator>=</operator> <number>1</number> <reserved>UNTIL</reserved> i <operator>&lt;</operator> n <reserverd>STEP</reserverd> <number>1</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>IF</reserved><operator>(</operator> n <operator>%</operator> i <operator>==</operator> 0 <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>count<operator>++</operator></syntax><br>
+                                        <syntax>arr<operator>[</operator>j<operator>] =</operator> i</syntax>
+                                    </div>
+                                <syntax>j<operator>++</operator></syntax>
+                            </div>
+                        <syntax><reserved>RETURN</reserved> arr<operator>,</operator> count</syntax><br>
+                    </div>
+            </div><br>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    var n = 30;
+                    var count = 0;
+                    function countUpFactors(n){
+                        document.write("<h4>Proper factors of "+n+" are:<br>");
+                        for(var i=1; i<n; i++){
+                            if( n%i == 0 ){
+                                count++;
+                                document.write(i+" ");
+                            }
+                        }
+                        document.write("<br>The number of proper factors of "+n+" is "+count+".</h4>");
+                        document.write("<h5>* For more details check font code</h5>");
+                    }
+                    countUpFactors(n);
+                </script>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
