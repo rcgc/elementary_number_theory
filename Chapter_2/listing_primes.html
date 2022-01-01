@@ -11,19 +11,80 @@
         <div class="container">
             <h2>Definition</h2>
             <span> 
-                Text
+                A <b><em>prime number</em></b> is a number that has no divisors other than itself or 1.
             </span><br><br>
 
             <h2>Pseudocode</h2>
             <div class="card">
-
+                <syntax><comment>// Will return a list of prime numbers up to limit</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GET_PRIMES<operator>(</operator> limit <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>primes<operator>.</operator><reserved>push</reserved><operator>(</operator> 2  <operator>)</operator></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> n <operator>=</operator> <number>3</number> <reserved>UNTIL</reserved> n <operator>&lt;</operator> limit <reserved>STEP</reserved> <number>1</number><operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax>s <operator>=</operator> <reserved>sqrt</reserved><operator>(</operator> n <operator>)</operator></syntax><br>
+                                <syntax>noFactorSoFar <operator>=</operator> <number>TRUE</number></syntax><br><br>
+                                <syntax><reserved>FOR</reserved>( fi <operator>=</operator> <number>0</number> <reserved>UNTIL</reserved> fi <operator>&lt;</operator> primes<operator>.</operator><reserved>length</reserved> <reserved>AND</reserved> primes<reserved>[</reserved>fi<reserved>]</reserved> <operator>&#8804;</operator> s <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>f <operator>=</operator> primes<operator>[</operator>fi<operator>]</operator></syntax><br>
+                                        <syntax>r <operator>=</operator> n <operator>%</operator> f</syntax><br><br>
+                                        <syntax><reserved>IF</reserved><operator>(</operator> r <operator>==</operator> <number>0</number> <operator>):</operator></syntax>
+                                            <div class="indent">
+                                                <syntax>noFactorSoFar <operator>=</operator> <number>FALSE</number></syntax><br>
+                                                <syntax><reserved>BREAK</reserved></syntax><br><br>
+                                            </div>
+                                    </div>
+                                <syntax><reserved>IF</reserved><operator>(</operator> noFactorSoFar <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>primes<operator>.</operator><reserved>push</reserved><operator>(</operator> n <operator>)</operator></syntax>
+                                    </div><br>
+                            </div>
+                            <syntax><reserved>RETURN</reserved> primes</syntax>
+                    </div>
             </div>
 
             <!--Algorithm part-->
             <h2>Result</h2>
             <div class="card">
                 <script>
+                    var primes = [2];
+                    
+                    function printPrimes(primes){
+                        document.write("<h4>");
+                        for(var i=0; i<primes.length; i++){
+                            if( i%2 == 1){
+                                document.write("<discrete>"+primes[i]+" </discrete>")
+                            } else{
+                                document.write(primes[i]+" ")
+                            }
+                        }
+                        document.write("</h4>");
+                    }
 
+                    function getPrimes(limit){
+                        count = 0;
+                        for( n = 3; n < limit; n++ ){
+                           s = Math.sqrt( n );
+                           noFactorSoFar = true;
+
+                            for( fi = 0; fi < primes.length && primes[fi] <= s; fi++ ){
+                                f = primes[fi];
+                                r = n % f;
+                                count++;
+                                if( r == 0 ){
+                                    noFactorSoFar = false;
+                                    break;
+                                }
+                            }
+                            if( noFactorSoFar ){
+                                primes.push(n);
+                            }
+                        }
+                        document.write("<h4>Number of % operations performed: "+count+"</h4>");
+                        document.write("<h4>Number of primes found in range (2 - "+limit+"): "+primes.length+"</h4>");
+                        printPrimes(primes);
+                    }
+                    getPrimes(1000);
                 </script>
             </div>
             <!--End of Algorithm part-->

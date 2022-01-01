@@ -51,6 +51,10 @@ comment {
     margin: 5% 10%;
 }
 
+discrete{
+    color: lightslategrey;
+}
+
 h1.center {
     text-align: center;
 }
