@@ -11,19 +11,51 @@
         <div class="container">
             <h2>Definition</h2>
             <span> 
-                Text
+                An equation of the form <b>x<sup>2</sup> &minus; ky<sup>2</sup> = &plusmn;1</b>, 
+                where <b>k &ge; 2</b>, is called a <b><em>Pell equation</em></b>.
             </span><br><br>
 
             <h2>Pseudocode</h2>
             <div class="card">
-
+                <syntax><comment>// Will print solution for x and y</comment></syntax><br>
+                <syntax><comment>// to the equation x<sup>2</sup> &minus; ky<sup>2</sup> = &plusmn;1</comment></syntax><br>
+                <syntax><comment>// up to limit</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> SOLVE_PELL_EQUATION<operator>( </operator>limit <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>k <operator>=</operator> <number>3</number></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> x <operator>=</operator> <number>1</number> <reserved>UNTIL</reserved> x <operator>&lt;</operator> limit <reserved>STEP </reserved> <number>1</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax>h <operator>= (</operator> x <operator>* </operator>x <operator>&minus; </operator><number>1 </number><operator>) /</operator> k</syntax><br>
+                                <syntax>yy <operator>= </operator> <reserved>sqrt</reserved><operator>( </operator> h <operator>)</operator></syntax><br>
+                                <syntax>y <operator>= </operator><reserved>floor</reserved><operator>(</operator> yy <operator>+</operator> <number>0.5</number> <operator>)</operator></syntax><br><br>
+                                <syntax><reserved>IF</reserved><operator>( </operator>x <operator>* </operator>x <operator>&minus; </operator> <number>3 </number><operator>* </operator>y <operator>* </operator>y <operator>== </operator><number>1</number> <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax><reserved>PRINT </reserved><string>"x = "</string> x <string>", y = "</string> y</syntax>
+                                    </div>
+                            </div><br>
+                            <syntax><reserved>RETURN</reserved></syntax>
+                    </div>
             </div>
 
             <!--Algorithm part-->
             <h2>Result</h2>
             <div class="card">
                 <script>
+                    function init(limit){
+                        document.write("<h4>Solutions of x<sup>2</sup>&minus;3*y<sup>2</sup> = 1</h4>");
+                        document.write("<h4>Until x = "+limit+"</h4><br>");
+                        k = 3;
 
+                        for(x=1; x<limit; x++){
+                            h = (x*x-1)/k;
+                            yy = Math.sqrt(h);
+                            y = Math.floor(yy + 0.5);
+                            if( (x*x-3*y*y) == 1 ){
+                                document.write("<h4>x = "+ String(x) + ", y = "+String(y)+ "</h4>");
+                            }
+                        }
+                    }
+                    init(1000);
                 </script>
             </div>
             <!--End of Algorithm part-->
