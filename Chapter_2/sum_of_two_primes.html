@@ -2,16 +2,23 @@
 <html>
     <head>
         <title>Numbers as sum of two primes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../styles.css">
+
+        
     </head>
-    <body>
+    <body onload="init();">
         <h1 class="center">2.3 Numbers as the sum of two primes<br>. . .</h1>
 
         <div class="container">
             <h2>Definition</h2>
             <span> 
-                Text
+                In the eighteenth century, Goldbach conjectured 
+                that every even number greater than 4 is the <b>sum of 
+                two odd primes</b>. <br>
+                (This is not a proof! Something could go wrong for 
+                numbers greater than 1000.)
             </span><br><br>
 
             <h2>Pseudocode</h2>
@@ -19,12 +26,95 @@
 
             </div>
 
-            <!--Algorithm part-->
             <h2>Result</h2>
             <div class="card">
+                <!--Algorithm part-->
                 <script>
+                    var primes = [2];
+                    var limit = 1000;
 
+                    function init(){
+                        var f; 
+                        var r; 
+                        var noFactorSoFar;
+                        var s;
+                        
+                        for( var n=3; n<limit; n++){
+                            s = Math.sqrt(n);
+                            noFactorSoFar = true;
+
+                            for(var fi=0; fi<primes.length && primes[fi]<=s; fi++){
+                                f = primes[fi];
+                                r = n % f;
+
+                                if( r==0 ){
+                                    noFactorSoFar = false;
+                                    break;
+                                }
+                            }
+                            if( noFactorSoFar ){
+                                primes.push(n);
+                            }
+                        }
+                    }
+
+                    function findpairs(){
+                        answer = "";
+                        count = 0;
+                        var h;
+                        var number = parseInt(document.f.num.value);
+
+                        if( number%2 > 0 ){
+                            alert("Your numbers must be even. Try again");
+                            return false;
+                        }if( number > limit ){
+                            alert("Your number is greater than " + limit + ". Please try a smaller number.");
+                            return false;
+                        }
+                        h = number/2;
+
+                        for( f=1; f<=h; f++ ){
+                            if(isPrime(f) && isPrime(number-f)){
+                                answer += String(f) + " and " + String(number-f) + " <br>";
+                                count++;
+                            }
+                        }
+
+                        if( answer.length > 0){
+                            answer += String(count) + " pairs of primes adding up to " + String(number);
+                        }else{
+                            answer = document.createTextNode("No pairs of primes adding up to " + String(number));
+                        }
+
+                        document.getElementById("place").innerHTML = answer;
+                        return false;
+                    }
+
+                    function isPrime(c){
+                        var i;
+                        i = primes.indexOf(c);
+                        return(i>=0);
+                    }
                 </script>
+                <!--End of Algorithm part-->
+
+                <h4>Find pair of prime numbers adding up to even number</h4>
+                <form name="f" onsubmit="return findpairs();">
+                    <input type="text" name="num" value=" "/>
+                    <input type="submit" value="Submit an even number "/>
+                </form>
+                <p id="place">
+                    The answer will go here.
+                </p>
+                <h5>* For more details check font code</h5>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
             </div>
         </div>
     </body>

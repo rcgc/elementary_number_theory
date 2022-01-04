@@ -37,7 +37,6 @@ background-color: RoyalBlue;
 .center-item {
     margin: 0;
     position: absolute;
-    /*top: 50%;*/
     left: 50%;
     -ms-transform: translate(0%, -50%);
     transform: translate(0%, -50%);
@@ -86,4 +85,48 @@ string {
 syntax {
     color: lavender;
     font-family: "Consolas";
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 599px) {
+    a, h2, h3, h4, h5, h6, label, p, span {
+        font-size: 75%;
+    }
+    h1 {
+        font-size: 95%;
+    }
+    .container{
+        margin: 5% 1%;
+    }
+    syntax{
+        font-size: 30%;    
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    syntax{
+        font-size: 55%;    
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    syntax{
+        font-size: 75%;    
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    syntax{
+        font-size: 90%;    
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    syntax{
+        font-size: 100%;    
+    }
 }
