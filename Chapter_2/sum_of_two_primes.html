@@ -23,7 +23,75 @@
 
             <h2>Pseudocode</h2>
             <div class="card">        
+                <syntax><comment>// Will return a list of prime numbers up to limit</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GET_PRIMES<operator>(</operator> limit <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>primes<operator>.</operator><reserved>push</reserved><operator>(</operator> 2  <operator>)</operator></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> n <operator>=</operator> <number>3</number> <reserved>UNTIL</reserved> n <operator>&lt;</operator> limit <reserved>STEP</reserved> <number>1</number><operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax>s <operator>=</operator> <reserved>sqrt</reserved><operator>(</operator> n <operator>)</operator></syntax><br>
+                                <syntax>noFactorSoFar <operator>=</operator> <number>TRUE</number></syntax><br><br>
+                                <syntax><reserved>FOR</reserved><operator>(</operator> fi <operator>=</operator> <number>0</number> <reserved>UNTIL</reserved> fi <operator>&lt;</operator> primes<operator>.</operator><reserved>length</reserved> <reserved>AND</reserved> primes<reserved>[</reserved>fi<reserved>]</reserved> <operator>&#8804;</operator> s <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>f <operator>=</operator> primes<operator>[</operator>fi<operator>]</operator></syntax><br>
+                                        <syntax>r <operator>=</operator> n <operator>%</operator> f</syntax><br><br>
+                                        <syntax><reserved>IF</reserved><operator>(</operator> r <operator>==</operator> <number>0</number> <operator>):</operator></syntax>
+                                            <div class="indent">
+                                                <syntax>noFactorSoFar <operator>=</operator> <number>FALSE</number></syntax><br>
+                                                <syntax><reserved>BREAK</reserved></syntax><br><br>
+                                            </div>
+                                    </div>
+                                <syntax><reserved>IF</reserved><operator>(</operator> noFactorSoFar <operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>primes<operator>.</operator><reserved>push</reserved><operator>(</operator> n <operator>)</operator></syntax>
+                                    </div><br>
+                            </div>
+                            <syntax><reserved>RETURN</reserved> primes</syntax>
+                    </div><br><br><br>
 
+                <syntax><comment>// Will print prime pairs which sum is equal to number</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE </reserved>FIND_PAIRS<operator>(</operator> number <operator>,</operator> limit <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>count <operator>= </operator><number>0</number></syntax><br><br>
+                        <syntax><reserved>IF</reserved><operator>( </operator>number <operator>% </operator><number>2</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>PRINT</reserved> <string>"Number must be even."</string></syntax><br>
+                                <syntax><reserved>RETURN</reserved></syntax>
+                            </div><br>
+                        <syntax><reserved>IF</reserved><operator>( </operator>number <operator>&gt;</operator> limit <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>PRINT</reserved> <string>"Number is greater than limit."</string></syntax><br>
+                                <syntax><reserved>RETURN</reserved></syntax>
+                            </div><br>
+                        <syntax>h <operator>= </operator>number <operator>/</operator> <number>2</number></syntax><br><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> f <operator>=</operator><number>1</number><reserved> UNTIL </reserved>f <operator>&le;</operator> <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>IF</reserved><operator>(</operator> isPrime<operator>( </operator>f <operator>, </operator> limit<operator> )</operator> <reserved>AND</reserved> isPrime<operator>(</operator> number <operator>-</operator> f <operator> , </operator> limit<operator> ) ):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax><reserved>PRINT</reserved> f<string> ", "</string>number <operator>-</operator> f</syntax><br>
+                                        <syntax>count<operator>++</operator></syntax>
+                                    </div>
+                            </div><br>
+
+                            <syntax><reserved>IF</reserved><operator>( </operator>count <operator>&gt; </operator>0 <operator>):</operator></syntax>
+                                <div class="indent">
+                                    <syntax><reserved>PRINT</reserved> count <string>"pairs of primes adding up to "</string> limit <string>"."</string></syntax>
+                                </div>
+                            <syntax><reserved>ELSE<operator>:</operator></syntax>
+                                <div class="indent">
+                                    <syntax><reserved>PRINT </reserved><string>"No pairs of primes adding up to "</string> limit <string>"."</string></syntax>
+                                </div><br>
+
+                            <syntax><reserved>RETURN</reserved></syntax>
+                    </div><br><br><br>
+                
+                    <syntax><comment>// Will check if a number is prime or not</comment></syntax><br><br>
+                    <syntax><reserved>PROCEDURE </reserved> IS_PRIME<operator>(</operator> n <operator>, </operator> limit <operator>):</operator></syntax>
+                        <div class="indent">
+                            <syntax>primes <operator>= </operator>getPrimes<operator>(</operator> limit <operator>)</operator></syntax><br>
+                            <syntax>i <operator>= </operator>primes<operator>.</operator><reserved>indexOf</reserved><operator>(</operator> n <operator>)</operator></syntax><br><br>
+                            <syntax><reserved>RETURN</reserved><operator>( </operator>i <operator>&ge; </operator> <number>0 </number><operator>)</operator></syntax>                            
+                        </div>
             </div>
 
             <h2>Result</h2>
