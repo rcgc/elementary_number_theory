@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pascal's Triangle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">3.2 Pascal's Triangle<br>. . .</h1>
+
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                Is an ancient <b>array of numbers</b> (the name of the row is given by the second entry).
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    function triangle(ns){
+                        var limit = parseInt(ns);
+                        var output = "<center>";
+                        output += "1<br/>";
+
+                        var last = [1];
+                        var lastnext;
+                        var next;
+                        var val;
+                        limit--;
+
+                        while( limit >= 0 ){
+                            count = last.unshift(0);
+                            last.push(0);
+                            next = [];
+
+                            for(var i=0; i<count; i++){
+                                val = last[i]+last[i+1];
+                                next.push(val);
+                                output += String(val)+"&nbsp;";
+                            }
+                            output += "<br/>";
+                            last = next;
+                            limit--;
+                        }
+
+                        output += "</center>";
+                        document.getElementById("place").innerHTML = output;
+                        return false;
+                    }
+                </script>
+                <h4>Choose limit</h4>
+                <form name="f" onsubmit="return triangle(this.num.value);">
+                    <input type="text" name="num" value=" "/>
+                    <input type="submit" value="Submit a number"/>
+                </form>
+                <p id="place">
+                    The answer will go here
+                </p>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

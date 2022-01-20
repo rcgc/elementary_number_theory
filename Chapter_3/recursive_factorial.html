@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recursive Factorial</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">3.1 Recursive Factorial<br>. . .</h1>
+        
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                Is the <b>product</b> of the first n <b>positive integers</b>, that is, n = n &times; n&minus;1 &times; n&minus;2 &times; ... &times;3&times;2&times;1
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will return the facotrial of a given number</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> FACTORIAL<operator>( </operator>n <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax><reserved>IF</reserved><operator>(</operator> n <operator>&le;</operator> <number>1</number> <operator>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN </reserved><number>1</number></syntax>
+                            </div>
+                        <syntax><reserved>ELSE</reserved><operator>:</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> n <operator>* </operator> FACTORIAL<operator>( </operator>n <operator>&minus;</operator> <number>1</number> <operator>)</operator></syntax>
+                            </div>
+                    </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    function fac(ns){
+                        var n = parseInt(ns);
+                        var start = new Date();
+                        var startmm = start.getTime();
+
+                        var ans = worker(n);
+
+                        var now = new Date();
+                        nowmm = now.getTime();
+
+                        var elapsed = nowmm - startmm;
+                        //alert("ans is "+ans+" performed in "+elapsed+" msec.");
+                        document.getElementById("place").innerHTML = ans;
+                        return false;
+                    }
+
+                    function worker(n){
+                        if(n<=1){ return 1; }
+                        else{ return n*worker(n-1); }
+                    }
+                </script>
+                <h4>Choose limit</h4>
+                <form name="f" onsubmit="return fac(this.num.value);">
+                    <input type="text" name="num" value=" "/>
+                    <input type="submit" value="Submit a number"/>
+                </form>
+                <p id="place">
+                    The answer will go here.
+                </p>
+                <h5>* For more details check font code</h5>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
