@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>GCD</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">4.1 GCD<br>. . .</h1>
+        
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                Given a and b, we call d the <b><em>greatest common divisor</em></b> of a and b, denoted gcd(a,b), if:
+                <ol>
+                    <li>d | a and d | b.</li>
+                    <li>d is the greatest number that divides both a and b.</li>
+                </ol>
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will return the greatest common divisor of a and b</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GCD<operator>( </operator>a <operator>,</operator> b<operator> ):</operator></syntax>
+                    <div class="indent">
+                        <syntax><reserved>IF</reserved><operator>( </operator>a <operator>==</operator> <number>0</number><operator> ):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> b</syntax>
+                            </div>
+                            <syntax><reserved>RETURN</reserved> GCD<operator>(</operator> b<operator> % </operator>a <operator>, </operator>a <operator>)</operator></syntax>
+                    </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    var placeref;
+                    
+                    function find(){
+                        placeref = document.getElementById("place");
+                        placeref.innerHTML = "";
+
+                        gcd(parseInt(document.f.numA.value), parseInt(document.f.numB.value));
+                        return false;
+                    }
+
+                    function gcd(a, b){
+                        var messages;
+                        var holder;
+                        var r;
+                        if(b<a){
+                            holder=a;
+                            a=b;
+                            b=holder;
+                        }
+                        messages = placeref.innerHTML;
+                        messages += "<h4>Searching for GCD of "+String(a)+" and "+String(b)+".</h4>";
+                        placeref.innerHTML = messages;
+                        r = b%a;
+                        if(r==0){
+                            messages += "<h4>GCD is "+String(a)+"</h4>";
+                            placeref.innerHTML = messages;
+                            return false;
+                        }
+
+                        else {
+                            return gcd(r,a);
+                        }
+                    }
+                </script>
+                <h4>Enter two numbers</h4>
+                <form name="f" onsubmit="return find();">
+                    <label>A: </label><input type="number" name="numA" value=""/><br><br>
+                    <label>B: </label><input type="number" name="numB" value="">
+                    <br><br>
+                    <input type="submit" value="Enter"/>
+                </form>
+                <p id="place">
+                    Procedure will go here.
+                </p>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
