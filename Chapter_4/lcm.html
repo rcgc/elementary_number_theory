@@ -17,9 +17,20 @@
                 which is is a multiple of all given integers and is minimal.
             </span><br><br>
 
-            <!--https://www.programming-algorithms.net/article/42865/Least-common-multiple-->
+            <!-- https://www.programming-algorithms.net/article/42865/Least-common-multiple -->
             <h2>Pseudocode</h2>
             <div class="card">
+                <syntax><comment>// Will return the greatest common divisor of a and b</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GCD<operator>( </operator>a <operator>,</operator> b<operator> ):</operator></syntax>
+                    <div class="indent">
+                        <syntax><reserved>IF</reserved><operator>( </operator>a <operator>==</operator> <number>0</number><operator> ):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>RETURN</reserved> b</syntax>
+                            </div>
+                        <syntax><reserved>RETURN</reserved> GCD<operator>(</operator> b<operator> % </operator>a <operator>, </operator>a <operator>)</operator></syntax>
+                    </div><br><br>
+
+
                 <syntax><comment>// Will return the lcm of a and b</comment></syntax><br><br>
                 <syntax><reserved>PROCEDURE</reserved> LCM<operator>( </operator>a <operator>,</operator> b<operator> ):</operator></syntax>
                     <div class="indent">
