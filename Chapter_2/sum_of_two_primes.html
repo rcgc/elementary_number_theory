@@ -29,7 +29,7 @@
                         <syntax>primes<operator>.</operator><reserved>push</reserved><operator>(</operator> 2  <operator>)</operator></syntax><br>
                         <syntax><reserved>FOR</reserved><operator>(</operator> n <operator>=</operator> <number>3</number> <reserved>UNTIL</reserved> n <operator>&lt;</operator> limit <reserved>STEP</reserved> <number>1</number><operator>):</operator></syntax>
                             <div class="indent">
-                                <syntax>s <operator>=</operator> <reserved>sqrt</reserved><operator>(</operator> n <operator>)</operator></syntax><br>
+                                <syntax>s <operator>=</operator> sqrt<operator>(</operator> n <operator>)</operator></syntax><br>
                                 <syntax>noFactorSoFar <operator>=</operator> <number>TRUE</number></syntax><br><br>
                                 <syntax><reserved>FOR</reserved><operator>(</operator> fi <operator>=</operator> <number>0</number> <reserved>UNTIL</reserved> fi <operator>&lt;</operator> primes<operator>.</operator><reserved>length</reserved> <reserved>AND</reserved> primes<reserved>[</reserved>fi<reserved>]</reserved> <operator>&#8804;</operator> s <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
                                     <div class="indent">
@@ -64,9 +64,9 @@
                                 <syntax><reserved>RETURN</reserved></syntax>
                             </div><br>
                         <syntax>h <operator>= </operator>number <operator>/</operator> <number>2</number></syntax><br><br>
-                        <syntax><reserved>FOR</reserved><operator>(</operator> f <operator>=</operator><number>1</number><reserved> UNTIL </reserved>f <operator>&le;</operator> <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> f <operator>=</operator><number> 1</number><reserved> UNTIL </reserved>f <operator>&le;</operator> <reserved>STEP</reserved> <number>1</number> <operator>):</operator></syntax>
                             <div class="indent">
-                                <syntax><reserved>IF</reserved><operator>(</operator> isPrime<operator>( </operator>f <operator>, </operator> limit<operator> )</operator> <reserved>AND</reserved> isPrime<operator>(</operator> number <operator>-</operator> f <operator> , </operator> limit<operator> ) ):</operator></syntax>
+                                <syntax><reserved>IF</reserved><operator>(</operator> IS_PRIME<operator>( </operator>f <operator>, </operator> limit<operator> )</operator> <reserved>AND</reserved> IS_PRIME<operator>(</operator> number <operator>-</operator> f <operator> , </operator> limit<operator> ) ):</operator></syntax>
                                     <div class="indent">
                                         <syntax><reserved>PRINT</reserved> f<string> ", "</string>number <operator>-</operator> f</syntax><br>
                                         <syntax>count<operator>++</operator></syntax>
@@ -89,7 +89,7 @@
                     <syntax><reserved>PROCEDURE </reserved> IS_PRIME<operator>(</operator> n <operator>, </operator> limit <operator>):</operator></syntax>
                         <div class="indent">
                             <syntax>primes <operator>= </operator>getPrimes<operator>(</operator> limit <operator>)</operator></syntax><br>
-                            <syntax>i <operator>= </operator>primes<operator>.</operator><reserved>indexOf</reserved><operator>(</operator> n <operator>)</operator></syntax><br><br>
+                            <syntax>i <operator>= </operator>primes<operator>.</operator>indexOf<operator>(</operator> n <operator>)</operator></syntax><br><br>
                             <syntax><reserved>RETURN</reserved><operator>( </operator>i <operator>&ge; </operator> <number>0 </number><operator>)</operator></syntax>                            
                         </div>
             </div>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>Prime Decomposition</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">4.2 Prime Decomposition<br>. . .</h1>
+        
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                The <b><em>prime decomposition</em></b> of any positive integer greater than 1 is unique, 
+                except for the order in which the prime factors are written.
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will check if a number is prime or not</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> IS_PRIME<operator>(</operator> n <operator>):</operator></syntax>
+                    <div class="indent">
+                        <syntax>lim<operator> = </operator>sqrt<operator>(</operator> n <operator>)</operator></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator> i<operator> = </operator><number>2</number><reserved> UNTIL </reserved> i<operator> &le; </operator>lim<operator><reserved> STEP </reserved><number>1 </number>):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>IF</reserved><operator>(</operator> n<operator> % </operator>i<operator> == </operator><number>0 </number><operator>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax><reserved>RETURN </reserved><number>FALSE</number></syntax>
+                                    </div>
+                            </div>
+                        <syntax><reserved>RETURN </reserved><number>TRUE</number></syntax>
+                    </div><br><br>
+                    
+
+                <syntax><comment>// Will return an array that contains all the prime factors</comment></syntax><br>
+                <syntax><comment>// of a given number n</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GET_FACTORS<operator>( </operator>n<operator> ):</operator></syntax>
+                    <div class="indent">
+                        <syntax>factors<operator> = </operator><operator>[]</operator></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>( </operator>i<operator> = </operator><number>2</number><reserved> UNTIL </reserved>i<operator> &lt; </operator>n <reserved>STEP</reserved><number> 1</number><operator> ):</operator></syntax>
+                            <div class="indent">
+                                <syntax><reserved>IF</reserved><operator>(</operator>n<operator> % </operator>i <operator>==</operator><number>0</number><operator> ):</operator></syntax>
+                                <div class="indent">
+                                    <syntax><reserved>IF</reserved><operator>( </operator>IS_PRIME<operator>(</operator> i <operator>)</operator><operator> ):</operator></syntax>    
+                                    <div class="indent">
+                                        <syntax>factors<operator>.</operator>append<operator>(</operator> i <operator>)</operator></syntax>
+                                    </div>
+                                </div>
+                            </div>
+                        <syntax><reserved>RETURN</reserved> factors</syntax>
+                    </div><br><br>
+                
+
+                <syntax><comment>// Will return a map with all the prime factors and</comment></syntax><br>
+                <syntax><comment>// their corresponding power</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> GENERATE_TABLE<operator>( </operator>n<operator> , </operator>factors <operator>)</operator>:</syntax><br>
+                    <div class="indent">
+                        <syntax>map<operator> = </operator><operator>{}</operator></syntax><br>
+                        <syntax><reserved>FOR</reserved><operator>(</operator>i<operator> = </operator><number>0 </number><reserved>UNTIL</reserved> i <operator>&lt;</operator> factors<operator>.</operator>length<operator>()</operator><reserved> STEP </reserved><number>1</number><operator> ):</operator></syntax>
+                            <div class="indent">
+                                <syntax>f<operator> = </operator>factors<operator>[</operator>i<operator>]</operator></syntax><br>
+                                <syntax><reserved>IF</reserved><operator>( </operator>n<operator> % </operator>f<operator> == <number>0</number></operator><operator> ):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax><reserved>CONTINUE</reserved></syntax>
+                                    </div>
+                                <syntax><reserved>ELSE:</reserved></syntax>
+                                <div class="indent">
+                                    <syntax>m<operator> = </operator>m<operator> / </operator>f</syntax><br>
+                                    <syntax>e<operator> = </operator><number>1</number></syntax><br>
+                                    <syntax><reserved>WHILE</reserved><operator>( </operator>m<operator> % </operator>f<operator> == </operator><number>0</number><operator> ):</operator></syntax>
+                                        <div class="indent">
+                                            <syntax>m<operator> = </operator>m<operator> / </operator>f</syntax><br>
+                                            <syntax>e<operator>++</operator></syntax>
+                                        </div>
+                                    <syntax>map<operator>.</operator>insert<operator>( </operator>f<operator> , </operator>e<operator> )</operator></syntax>
+                                </div>
+                            </div>
+                        <syntax><reserved>RETURN </reserved>map</syntax>
+                    </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    var table = [];
+                    //each element will be an array of length 2
+                    function produceFactors(n){
+                        var ans = []; //start off with empty array
+                        //notice start with 2, not 1
+                        for (var i=2;i<=n;i++){
+                            if ((n%i)==0){
+                                ans.push(i);
+                            }
+                        }
+                        return ans;
+                    }
+
+                    function onlyprimes(factors){
+                        var ans = [];
+                        for (var i=0;i<factors.length;i++){
+                            if (isPrime(factors[i])){
+                                ans.push(factors[i]);
+                            }
+                        }
+                        return ans;
+                    }
+
+                    function makeTable(m,facs){
+                        while (facs.length>0){
+                            f = facs[0];
+                            //always using first, that is, 0th element
+                            if ((m % f )>0) {
+                                //f, the ith element of facs does NOT divide m
+                                facs.shift(); //remove this factor
+                            }
+                            else {
+                                m = m / f;
+                                e=1;
+                                //need to see if exponent is more than 1
+                        
+                                while (0 == (m%f ) ){
+                                    m = m /f;
+                                    e++;
+                                }
+                                table.push ([f,e]);
+                                facs.shift();
+                            }
+                        }
+                        return;
+                    }
+
+                    function isPrime(n){
+                        var lim = Math.sqrt(n);
+                        for (var i=2;i<=lim;i++){
+                            if (0 == n % i){
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
+                    function displaydecomp(){
+                        table = []; //reset table to empty array
+                        placeref = document.getElementById("place");
+                        n = parseInt(document.f.num.value);
+                        factors = produceFactors(n);
+                        pfactors = onlyprimes(factors);
+                        makeTable(n, pfactors);
+                        // this function will add to table
+                        messages = "The prime decomposition is <br/>";
+                        for (var i=0;i<table.length;i++){
+                            messages+=String(table[i][0])+"<sup>"+String
+                            (table[i][1])+"</sup>";
+                        }
+                        placeref.innerHTML = messages;
+                        return false;
+                    }
+                </script>
+
+                <h4>Enter number to see its prime decomposition:</h4>
+                <form name="f" onSubmit="return displaydecomp();">
+                    <input type="number" name="num" value=""/>
+                    <input type="submit" value="Enter integer"/>
+                </form>
+                <p id="place">
+                    Answer will go here.
+                </p>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

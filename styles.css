@@ -40,7 +40,11 @@ background-color: RoyalBlue;
     left: 50%;
     -ms-transform: translate(0%, -50%);
     transform: translate(0%, -50%);
-  }
+}
+
+.center-subheaders-index {
+    text-align: center;
+}
 
 comment {
     color: lightgray;

@@ -17,7 +17,29 @@
 
             <h2>Pseudocode</h2>
             <div class="card">
-                <syntax><comment>// Check font code for more details</comment></syntax>
+                <syntax><comment>// Will print Pascal's triangle</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> pascals_triangle<operator>(</operator> limit <operator>):</operator></syntax><br>
+                    <div class="indent">
+                        <syntax>output<operator> = </operator><string>"1\n"</string></syntax><br>
+                        <syntax>last<operator> = </operator><operator>[</operator><number>1</number><operator>]</operator></syntax><br>
+                        <syntax>limit<operator>--</operator></syntax><br><br>
+                        <syntax><reserved>WHILE</reserved><operator>(</operator> limit<operator> >= </operator><number>0 </number><operator>):</operator></syntax><br>
+                            <div class="indent">
+                                <syntax>add_at_beggining<operator>(</operator><number> 0 </number><operator>)</operator></syntax><br>
+                                <syntax>count<operator> = </operator>last<operator>.</operator>length<operator>()</operator></syntax><br>
+                                <syntax>last<operator>.</operator>append<operator>(</operator><number> 0 </number><operator>)</operator></syntax><br>
+                                <syntax>next<operator> = </operator><operator>[]</operator></syntax><br><br>
+                                <syntax><reserved>FOR</reserved><operator>(</operator> i<operator> =</operator><number> 0 </number><reserved>UNTIL</reserved> i <operator>&lt;</operator> count <operator><reserved>STEP</reserved><number> 1 </number>):</operator></syntax>
+                                    <div class="indent">
+                                        <syntax>val<operator> = </operator>last<operator>[</operator>i<operator>]</operator><operator> + </operator>last<operator>[</operator>i<operator> + </operator><number>1</number><operator>]</operator></syntax><br>
+                                        <syntax>next<operator>.</operator>append<operator>(</operator> val <operator>)</operator></syntax><br>
+                                        <syntax>output<operator> += </operator>to_string<operator>(</operator> val <operator>)</operator><operator> + </operator><string>" "</string></syntax>
+                                    </div><br>
+                                <syntax>output<operator> += </operator><string>"\n"</string></syntax><br>
+                                <syntax>last<operator> = </operator>next</syntax><br>
+                                <syntax>limit<operator>--</operator></syntax>
+                            </div>
+                    </div>
             </div>
 
             <!--Algorithm part-->
@@ -30,9 +52,9 @@
                         output += "1<br/>";
 
                         var last = [1];
-                        var lastnext;
                         var next;
                         var val;
+                        var row=0
                         limit--;
 
                         while( limit >= 0 ){
@@ -43,11 +65,17 @@
                             for(var i=0; i<count; i++){
                                 val = last[i]+last[i+1];
                                 next.push(val);
-                                output += String(val)+"&nbsp;";
+                                if(i==1 || i==row){
+                                    output += "<b>"+String(val)+"</b>&nbsp;";
+                                }
+                                else{
+                                    output += "<discrete>"+String(val)+"</discrete>&nbsp;";
+                                }
                             }
                             output += "<br/>";
                             last = next;
                             limit--;
+                            row++
                         }
 
                         output += "</center>";
