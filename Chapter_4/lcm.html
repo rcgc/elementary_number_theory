@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>LCM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <h1 class="center">4.3 LCM<br>. . .</h1>
+        
+        <div class="container">
+            <h2>Definition</h2>
+            <span> 
+                The <b><em>least common multiple</em></b> of positive integers n<sub>1</sub>, n<sub>2</sub>, n<sub>3</sub>, ..., n<sub>i</sub> is a number,
+                which is is a multiple of all given integers and is minimal.
+            </span><br><br>
+
+            <h2>Pseudocode</h2>
+            <div class="card">
+                <syntax><comment>// Will return the lcm of a and b</comment></syntax><br><br>
+                <syntax><reserved>PROCEDURE</reserved> LCM<operator>( </operator>a <operator>,</operator> b<operator> ):</operator></syntax>
+                    <div class="indent">
+                        <syntax>lcm<operator> = </operator><operator>( </operator>a<operator> * </operator>b<operator> ) / </operator>GCD<operator>(</operator> a<operator> , </operator>b <operator>)</operator></syntax><br>    
+                        <syntax><reserved>RETURN</reserved> lcm</syntax>
+                    </div>
+            </div>
+
+            <!--Algorithm part-->
+            <h2>Result</h2>
+            <div class="card">
+                <script>
+                    var placeref;
+                    
+                    function find(){
+                        placeref = document.getElementById("place");
+                        placeref.innerHTML = "";
+
+                        lcm = lcm(parseInt(document.f.numA.value), parseInt(document.f.numB.value));
+                        placeref.innerHTML = "<h4>"+String(lcm)+"</h4>";
+                        return false;
+                    }
+
+                    function gcd(a, b){
+                        if ((typeof a !== 'number') || (typeof b !== 'number')){
+                            return false;
+                        }
+                        a = Math.abs(a);
+                        b = Math.abs(b);
+                        while(b) {
+                            var res = b;
+                            b = a % b;
+                            a = res;
+                        }
+                        return a;
+                    }
+
+                    function lcm(a, b){
+                        const lcm = (a*b) / gcd(a,b);
+                        return lcm;
+                    }
+                </script>
+                <h4>Enter two numbers</h4>
+                <form name="f" onsubmit="return find();">
+                    <label>A: </label><input type="number" name="numA" value=""/><br><br>
+                    <label>B: </label><input type="number" name="numB" value="">
+                    <br><br>
+                    <input type="submit" value="Enter"/>
+                </form>
+                <p id="place">
+                    Result will go here.
+                </p>
+            </div>
+            <!--End of Algorithm part-->
+        </div>
+
+        <div class="container">
+            <div class="center-item">
+                <a href="../index.html">
+                    <button class="btn"><i class="fa fa-home"></i></button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
